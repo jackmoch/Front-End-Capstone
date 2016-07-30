@@ -28,11 +28,11 @@ app.run(["$location", "FBCreds", "authFactory", "dataFactory",
 app.config(function($routeProvider) {
 
   //routing
-  // $routeProvider
-  //   .when('/', {
-  //     templateUrl: 'partials/.html',
-  //     controller: 'Ctrl'
-  //   })
-  //   .otherwise('/');
+  $routeProvider
+    .when('/login', {
+      templateUrl: 'partials/login.html',
+      controller: 'loginCtrl'
+    })
+    .otherwise('/login');
 
 });

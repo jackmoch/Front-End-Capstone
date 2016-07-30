@@ -38,11 +38,6 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
     })
   }
 
-  // getOpenBook("0684801221")
-  //   .then(function(data) {
-  //     console.log("", data);
-  //   });
-
   return {
     getOpenBook, getData
   };
