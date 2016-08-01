@@ -1,6 +1,6 @@
 'use strict';
 
-const app = angular.module('pairApp', ['ngRoute'])
+const app = angular.module('pairApp', ['ngRoute', 'ngMaterial'])
   .constant('FirebaseURL', 'https://perfect-pairs.firebaseio.com/');
 
 app.run(["$location", "FBCreds", "authFactory", "dataFactory",
@@ -25,13 +25,17 @@ app.run(["$location", "FBCreds", "authFactory", "dataFactory",
   }
 ]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $httpProvider) {
 
   //routing
   $routeProvider
     .when('/login', {
       templateUrl: 'partials/login.html',
       controller: 'loginCtrl'
+    })
+    .when('/search', {
+      templateUrl: 'partials/search.html',
+      controller: 'searchCtrl'
     })
     .otherwise('/login');
 
