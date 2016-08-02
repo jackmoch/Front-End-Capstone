@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope, $timeout) {
+app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope, $timeout, $route) {
   let originatorEv;
   $scope.searchCompleted = false;
 
@@ -29,6 +29,7 @@ app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope
                 bookFactory.openBookPromise(validIsbnArray)
                   .then(function() {
                     $scope.booklist = bookFactory.getBookList();
+                    console.log("", $scope.booklist);
                     $scope.searchCompleted = true;
                   });
               });
