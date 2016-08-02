@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('loginCtrl', function($scope, $route, authFactory) {
+app.controller('loginCtrl', function($scope, $route, authFactory, $location) {
 
   $scope.login = function() {
     console.log("Login initialized");
@@ -8,6 +8,8 @@ app.controller('loginCtrl', function($scope, $route, authFactory) {
       .then(function(result) {
         var user = result.user.uid;
         console.log("logged in user", user);
+        $location.path('/search');
+        $scope.$apply();
       }).catch(function(error) {
         console.log(error);
       });
