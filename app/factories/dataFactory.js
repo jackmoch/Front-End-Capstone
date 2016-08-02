@@ -7,32 +7,65 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
 
   const getGoogleBooks = function(searchTerms) {
     return $q((resolve, reject) => {
-      $http.get(`https://www.googleapis.com/books/v1/volumes?q=in${searchBy}:${searchTerms}&max-results=40&key=AIzaSyA0F3r1-DQZP28idMye-KQkYYroQqkctl0`)
+      $http.get(`https://www.googleapis.com/books/v1/volumes?q=in${searchBy}:${searchTerms}&maxResults=40&key=AIzaSyA0F3r1-DQZP28idMye-KQkYYroQqkctl0`)
         .success((data) => {
-          let itemArray = data.items;
-          console.log("", data);
-          itemArray.forEach((value, i) => {
-            let identifierArray = value.volumeInfo.industryIdentifiers;
-            identifierArray.forEach((value, i) => {
-              if (value.type === "ISBN_10" || value.type === "ISBN_13") {
-                getOpenBook(value.identifier)
-                // console.log("", value.identifier);
-              }
-            })
-          });
-        resolve(data);
-      })
+          let googleBookArray = [];
+          googleBookArray = data.items;
+          resolve(googleBookArray);
+        })
         .error((error) => {
           reject(error);
         });
     });
   };
 
-  // const tesFunction = function() {
-  //   return $q((resolve, reject) => {
+  const buildIsbnArray = function(googleBookArray) {
+    let isbnArray = [];
+    return $q((resolve, reject) => {
+      googleBookArray.forEach((value, i) => {
+        if (value.volumeInfo.industryIdentifiers) {
+          isbnArray.push(value.volumeInfo.industryIdentifiers);
+        }
+      })
+      resolve(isbnArray);
+    })
+  }
 
-  //   })
-  // }
+  const buildValidIbsnArray = function(isbnArray) {
+    let validIsbnArray = [];
+    return $q((resolve, reject) => {
+      isbnArray.forEach((value, i) => {
+        value.forEach((value, i) => {
+          if (value.type === "ISBN_10" || value.type === "ISBN_13") {
+            validIsbnArray.push(value.identifier)
+          }
+        })
+      })
+      resolve(validIsbnArray);
+    })
+  }
+
+  const openBookPromise = function(validIsbnArray) {
+    return $q((resolve, reject) => {
+      callOpenBook(validIsbnArray)
+        .then(function() {
+          resolve();
+        })
+    })
+  }
+
+  const callOpenBook = function(validIsbnArray) {
+    return $q((resolve, reject) => {
+      validIsbnArray.forEach((value, i) => {
+        getOpenBook(value)
+          .then(function(data) {
+            if (validIsbnArray.length - 1 === i) {
+              resolve();
+            }
+          })
+      })
+    })
+  }
 
   const getOpenBook = function(isbn) {
     return $q((resolve, reject) => {
@@ -41,8 +74,12 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
         url: `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&&jscmd=data&format=json`
       })
         .success((data) => {
-          bookList.push(data);
-          console.log("", data);
+          // console.log("", data['ISBN:' + isbn]);
+          if (data['ISBN:' + isbn]) {
+            bookList.push(data['ISBN:' + isbn]);
+            // console.log("", bookList);
+          }
+          resolve(data);
         })
         .error((error) => {
           console.log("", error);
@@ -63,7 +100,7 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
   }
 
   return {
-    getOpenBook, getGoogleBooks, setSearchParam, getSearchParam
+    getOpenBook, getGoogleBooks, setSearchParam, getSearchParam, buildIsbnArray, buildValidIbsnArray, callOpenBook, getBookList, openBookPromise
   };
 
 });
