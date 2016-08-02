@@ -76,7 +76,7 @@ app.factory('bookFactory', function($q, $http) {
         url: `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&&jscmd=data&format=json`
       })
         .success((data) => {
-          if (data['ISBN:' + isbn]) {
+          if (data['ISBN:' + isbn] && data['ISBN:' + isbn].subjects) {
             bookList.push(data['ISBN:' + isbn]);
           }
           resolve(data);

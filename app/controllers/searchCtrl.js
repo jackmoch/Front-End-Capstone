@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('searchCtrl', function($scope, bookFactory, $location) {
+app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope, $timeout) {
   let originatorEv;
   $scope.searchCompleted = false;
 
@@ -38,8 +38,9 @@ app.controller('searchCtrl', function($scope, bookFactory, $location) {
 
   $scope.selectBook = function(selectedBook) {
     bookFactory.setSelectedBook(selectedBook);
-    $location.path('/pair');
+    $rootScope.selectedBookImage = selectedBook.cover.large;
     console.log(bookFactory.getSelectedBook());
+    $location.path('/pair');
   };
 
 });

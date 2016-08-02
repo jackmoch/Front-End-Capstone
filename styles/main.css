@@ -1,0 +1,8 @@
+.largeDiv {
+  border: 1px solid black; }
+  .largeDiv .smallDiv {
+    border: 1px solid black; }
+
+.bookImage {
+  height: 400px;
+  width: 300px; }
