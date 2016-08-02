@@ -8,23 +8,71 @@
   <link type="text/css" rel="stylesheet" href="lib/node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
   <link rel="stylesheet" href="lib/node_modules/angular-material/angular-material.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body ng-app='pairApp'>
   <div ng-view></div>
 
+  <!-- LOADING SPINNER -->
+  <div id="loaderContainer" loader>
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spincner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- END OF LOADING SPINNER -->
+
+  <script src="lib/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="lib/node_modules/angular/angular.min.js"></script>
   <script src="lib/node_modules/angular-aria/angular-aria.js"></script> 
   <script src="lib/node_modules/angular-animate/angular-animate.js"></script> 
   <script src="lib/node_modules/angular-material/angular-material.js"></script>
   <script src="lib/node_modules/angular-route/angular-route.min.js"></script>
   <script src="lib/node_modules/firebase/firebase.js"></script>
-  <script src="lib/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="lib/node_modules/materialize-css/dist/js/materialize.min.js"></script>
   <!-- Base app -->
   <script src="app/app.js"></script>
   <!-- credentials -->
   <script src="app/values/firebaseAuth.js"></script>
   <!-- Factories -->
+  <script src="app/factories/loaderFactory.js"></script>
   <script src="app/factories/bookFactory.js"></script>
   <script src="app/factories/authFactory.js"></script>
   <script src="app/factories/pairFactory.js"></script> 
