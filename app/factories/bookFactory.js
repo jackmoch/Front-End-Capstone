@@ -10,8 +10,7 @@ app.factory('bookFactory', function($q, $http) {
     return $q((resolve, reject) => {
       $http.get(`https://www.googleapis.com/books/v1/volumes?q=in${searchBy}:${searchTerms}&maxResults=40&key=AIzaSyA0F3r1-DQZP28idMye-KQkYYroQqkctl0`)
         .success((data) => {
-          let googleBookArray = [],
-            bookList = [];
+          let googleBookArray = [];
           googleBookArray = data.items;
           resolve(googleBookArray);
         })
@@ -48,6 +47,7 @@ app.factory('bookFactory', function($q, $http) {
   };
 
   const openBookPromise = function(validIsbnArray) {
+    bookList = [];
     return $q((resolve, reject) => {
       callOpenBook(validIsbnArray)
         .then(function() {
