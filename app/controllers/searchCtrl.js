@@ -1,21 +1,21 @@
 'use strict';
 
-app.controller('searchCtrl', function($scope, bookFactory) {
+app.controller('searchCtrl', function($scope, bookFactory, $location) {
   let originatorEv;
   $scope.searchCompleted = false;
 
   $scope.openMenu = function($mdOpenMenu, ev) {
     originatorEv = ev;
     $mdOpenMenu(ev);
-  }
+  };
 
   $scope.searchBy = function(val) {
     bookFactory.setSearchParam(val);
-  }
+  };
 
   $scope.formatTerms = function(searchTerms) {
     return searchTerms.split(' ').join('+');
-  }
+  };
 
   $scope.initiateSearch = function(searchTerms) {
     $scope.booklist = [];
@@ -30,15 +30,16 @@ app.controller('searchCtrl', function($scope, bookFactory) {
                   .then(function() {
                     $scope.booklist = bookFactory.getBookList();
                     $scope.searchCompleted = true;
-                  })
+                  });
               });
-          })
-      })
-  }
+          });
+      });
+  };
 
   $scope.selectBook = function(selectedBook) {
     bookFactory.setSelectedBook(selectedBook);
+    $location.path('/pair');
     console.log(bookFactory.getSelectedBook());
-  }
+  };
 
-})
+});

@@ -3,9 +3,9 @@
 const app = angular.module('pairApp', ['ngRoute', 'ngMaterial'])
   .constant('FirebaseURL', 'https://perfect-pairs.firebaseio.com/');
 
-app.run(["$location", "FBCreds", "authFactory", "bookFactory",
+app.run(["$location", "FBCreds", "authFactory",
 
-  function($location, FBCreds, authFactory, bookFactory) {
+  function($location, FBCreds, authFactory) {
     let authConfig = {
       apiKey: FBCreds.apiKey,
       authDomain: FBCreds.authDomain
@@ -25,7 +25,7 @@ app.run(["$location", "FBCreds", "authFactory", "bookFactory",
   }
 ]);
 
-app.config(function($routeProvider, $httpProvider) {
+app.config(function($routeProvider) {
 
   //routing
   $routeProvider
@@ -37,6 +37,10 @@ app.config(function($routeProvider, $httpProvider) {
       templateUrl: 'partials/search.html',
       controller: 'searchCtrl'
     })
-    .otherwise('/login');
+    .when('/pair', {
+      templateUrl: 'partials/pair.html',
+      controller: 'pairCtrl'
+    })
+    .otherwise('/search');
 
 });

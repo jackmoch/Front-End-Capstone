@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('bookFactory', function($q, $http, FirebaseURL) {
+app.factory('bookFactory', function($q, $http) {
 
   let searchBy = null,
     bookList = [],
@@ -28,10 +28,10 @@ app.factory('bookFactory', function($q, $http, FirebaseURL) {
         if (value.volumeInfo.industryIdentifiers) {
           isbnArray.push(value.volumeInfo.industryIdentifiers);
         }
-      })
+      });
       resolve(isbnArray);
-    })
-  }
+    });
+  };
 
   const buildValidIbsnArray = function(isbnArray) {
     let validIsbnArray = [];
@@ -39,22 +39,22 @@ app.factory('bookFactory', function($q, $http, FirebaseURL) {
       isbnArray.forEach((value, i) => {
         value.forEach((value, i) => {
           if (value.type === "ISBN_13") {
-            validIsbnArray.push(value.identifier)
+            validIsbnArray.push(value.identifier);
           }
-        })
-      })
+        });
+      });
       resolve(validIsbnArray);
-    })
-  }
+    });
+  };
 
   const openBookPromise = function(validIsbnArray) {
     return $q((resolve, reject) => {
       callOpenBook(validIsbnArray)
         .then(function() {
           resolve();
-        })
-    })
-  }
+        });
+    });
+  };
 
   const callOpenBook = function(validIsbnArray) {
     return $q((resolve, reject) => {
@@ -64,10 +64,10 @@ app.factory('bookFactory', function($q, $http, FirebaseURL) {
             if (validIsbnArray.length - 1 === i) {
               resolve();
             }
-          })
-      })
-    })
-  }
+          });
+      });
+    });
+  };
 
   const getOpenBook = function(isbn) {
     return $q((resolve, reject) => {
@@ -83,29 +83,29 @@ app.factory('bookFactory', function($q, $http, FirebaseURL) {
         })
         .error((error) => {
           console.log("", error);
-        })
-    })
-  }
+        });
+    });
+  };
 
   const setSearchParam = function(value) {
     searchBy = value;
-  }
+  };
 
   const setSelectedBook = function(book) {
     selectedBook = book;
-  }
+  };
 
   const getSelectedBook = function() {
     return selectedBook;
-  }
+  };
 
   const getBookList = function() {
     return bookList;
-  }
+  };
 
   const getSearchParam = function() {
     return searchBy;
-  }
+  };
 
   return {
     getOpenBook, getGoogleBooks, setSearchParam,
