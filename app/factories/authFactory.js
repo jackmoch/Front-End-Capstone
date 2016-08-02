@@ -2,8 +2,8 @@
 
 app.factory('authFactory', function() {
 
-  let currentUserId = null;
-  let googleProvider = new firebase.auth.GoogleAuthProvider();
+  let currentUserId = null,
+    googleProvider = new firebase.auth.GoogleAuthProvider();
 
   //onAuthStateChanged function to keep current UserId set correctly.
   //in the if set UID var to UID

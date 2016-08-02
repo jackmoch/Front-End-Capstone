@@ -1,11 +1,11 @@
 'use strict';
 
-const app = angular.module('pairApp', ['ngRoute'])
+const app = angular.module('pairApp', ['ngRoute', 'ngMaterial'])
   .constant('FirebaseURL', 'https://perfect-pairs.firebaseio.com/');
 
-app.run(["$location", "FBCreds", "authFactory", "dataFactory",
+app.run(["$location", "FBCreds", "authFactory", "bookFactory",
 
-  function($location, FBCreds, authFactory, dataFactory) {
+  function($location, FBCreds, authFactory, bookFactory) {
     let authConfig = {
       apiKey: FBCreds.apiKey,
       authDomain: FBCreds.authDomain
@@ -25,14 +25,18 @@ app.run(["$location", "FBCreds", "authFactory", "dataFactory",
   }
 ]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $httpProvider) {
 
   //routing
-  // $routeProvider
-  //   .when('/', {
-  //     templateUrl: 'partials/.html',
-  //     controller: 'Ctrl'
-  //   })
-  //   .otherwise('/');
+  $routeProvider
+    .when('/login', {
+      templateUrl: 'partials/login.html',
+      controller: 'loginCtrl'
+    })
+    .when('/search', {
+      templateUrl: 'partials/search.html',
+      controller: 'searchCtrl'
+    })
+    .otherwise('/login');
 
 });

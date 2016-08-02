@@ -6,23 +6,29 @@
   <title>Perfect Pairs</title>
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="lib/node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
-  <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="lib/node_modules/angular-material/angular-material.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body ng-app='pairApp'>
   <div ng-view></div>
 
   <script src="lib/node_modules/angular/angular.min.js"></script>
+  <script src="lib/node_modules/angular-aria/angular-aria.js"></script> 
+  <script src="lib/node_modules/angular-animate/angular-animate.js"></script> 
+  <script src="lib/node_modules/angular-material/angular-material.js"></script>
   <script src="lib/node_modules/angular-route/angular-route.min.js"></script>
   <script src="lib/node_modules/firebase/firebase.js"></script>
   <script src="lib/node_modules/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script src="lib/node_modules/materialize-css/dist/js/materialize.min.js"></script>
   <!-- Base app -->
-  <script type="text/javascript" src="/app/app.js"></script>
+  <script src="app/app.js"></script>
   <!-- credentials -->
-  <script type="text/javascript" src="/app/values/firebaseAuth.js"></script>
+  <script src="app/values/firebaseAuth.js"></script>
   <!-- Factories -->
-  <script type="text/javascript" src="/app/factories/dataFactory.js"></script>
-  <script type="text/javascript" src="/app/factories/authFactory.js"></script> 
+  <script src="app/factories/bookFactory.js"></script>
+  <script src="app/factories/authFactory.js"></script> 
   <!-- Controllers --> 
+  <script src="app/controllers/loginCtrl.js"></script>
+  <script src="app/controllers/searchCtrl.js"></script>
 </body>
 </html>
