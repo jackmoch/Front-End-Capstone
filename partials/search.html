@@ -24,5 +24,7 @@
   </div>
   <div ng-repeat='book in booklist'>
     <p>{{book.title}}</p>
+    <img ng-src="{{book.cover.medium}}">
+    <a class="btn-floating btn-large waves-effect waves-light red" ng-click="selectBook(book)"><i class="material-icons">add</i></a>
   </div>
 </div>  

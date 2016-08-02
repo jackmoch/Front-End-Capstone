@@ -1,15 +1,17 @@
 'use strict';
 
-app.factory('dataFactory', function($q, $http, FirebaseURL) {
+app.factory('bookFactory', function($q, $http, FirebaseURL) {
 
   let searchBy = null,
-    bookList = [];
+    bookList = [],
+    selectedBook;
 
   const getGoogleBooks = function(searchTerms) {
     return $q((resolve, reject) => {
       $http.get(`https://www.googleapis.com/books/v1/volumes?q=in${searchBy}:${searchTerms}&maxResults=40&key=AIzaSyA0F3r1-DQZP28idMye-KQkYYroQqkctl0`)
         .success((data) => {
-          let googleBookArray = [];
+          let googleBookArray = [],
+            bookList = [];
           googleBookArray = data.items;
           resolve(googleBookArray);
         })
@@ -36,7 +38,7 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
     return $q((resolve, reject) => {
       isbnArray.forEach((value, i) => {
         value.forEach((value, i) => {
-          if (value.type === "ISBN_10" || value.type === "ISBN_13") {
+          if (value.type === "ISBN_13") {
             validIsbnArray.push(value.identifier)
           }
         })
@@ -74,10 +76,8 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
         url: `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&&jscmd=data&format=json`
       })
         .success((data) => {
-          // console.log("", data['ISBN:' + isbn]);
           if (data['ISBN:' + isbn]) {
             bookList.push(data['ISBN:' + isbn]);
-            // console.log("", bookList);
           }
           resolve(data);
         })
@@ -87,12 +87,20 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
     })
   }
 
-  const getBookList = function() {
-    return bookList;
-  }
-
   const setSearchParam = function(value) {
     searchBy = value;
+  }
+
+  const setSelectedBook = function(book) {
+    selectedBook = book;
+  }
+
+  const getSelectedBook = function() {
+    return selectedBook;
+  }
+
+  const getBookList = function() {
+    return bookList;
   }
 
   const getSearchParam = function() {
@@ -100,7 +108,10 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
   }
 
   return {
-    getOpenBook, getGoogleBooks, setSearchParam, getSearchParam, buildIsbnArray, buildValidIbsnArray, callOpenBook, getBookList, openBookPromise
+    getOpenBook, getGoogleBooks, setSearchParam,
+    getSearchParam, buildIsbnArray, buildValidIbsnArray,
+    callOpenBook, getBookList, openBookPromise, setSelectedBook,
+    getSelectedBook
   };
 
 });

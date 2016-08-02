@@ -3,9 +3,9 @@
 const app = angular.module('pairApp', ['ngRoute', 'ngMaterial'])
   .constant('FirebaseURL', 'https://perfect-pairs.firebaseio.com/');
 
-app.run(["$location", "FBCreds", "authFactory", "dataFactory",
+app.run(["$location", "FBCreds", "authFactory", "bookFactory",
 
-  function($location, FBCreds, authFactory, dataFactory) {
+  function($location, FBCreds, authFactory, bookFactory) {
     let authConfig = {
       apiKey: FBCreds.apiKey,
       authDomain: FBCreds.authDomain

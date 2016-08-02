@@ -1,7 +1,8 @@
 'use strict';
 
-app.controller('searchCtrl', function($scope, dataFactory) {
-  var originatorEv;
+app.controller('searchCtrl', function($scope, bookFactory) {
+  let originatorEv;
+  $scope.searchCompleted = false;
 
   $scope.openMenu = function($mdOpenMenu, ev) {
     originatorEv = ev;
@@ -9,29 +10,35 @@ app.controller('searchCtrl', function($scope, dataFactory) {
   }
 
   $scope.searchBy = function(val) {
-    dataFactory.setSearchParam(val);
+    bookFactory.setSearchParam(val);
+  }
+
+  $scope.formatTerms = function(searchTerms) {
+    return searchTerms.split(' ').join('+');
   }
 
   $scope.initiateSearch = function(searchTerms) {
+    $scope.booklist = [];
     let terms = $scope.formatTerms(searchTerms);
-    dataFactory.getGoogleBooks(terms)
+    bookFactory.getGoogleBooks(terms)
       .then(function(googleBooksArray) {
-        dataFactory.buildIsbnArray(googleBooksArray)
+        bookFactory.buildIsbnArray(googleBooksArray)
           .then(function(isbnArray) {
-            dataFactory.buildValidIbsnArray(isbnArray)
+            bookFactory.buildValidIbsnArray(isbnArray)
               .then(function(validIsbnArray) {
-                dataFactory.openBookPromise(validIsbnArray)
+                bookFactory.openBookPromise(validIsbnArray)
                   .then(function() {
-                    $scope.booklist = dataFactory.getBookList();
-                    console.log("", $scope.booklist);
+                    $scope.booklist = bookFactory.getBookList();
+                    $scope.searchCompleted = true;
                   })
               });
           })
       })
   }
 
-  $scope.formatTerms = function(searchTerms) {
-    return searchTerms.split(' ').join('+');
+  $scope.selectBook = function(selectedBook) {
+    bookFactory.setSelectedBook(selectedBook);
+    console.log(bookFactory.getSelectedBook());
   }
 
 })
