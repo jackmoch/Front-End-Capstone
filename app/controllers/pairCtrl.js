@@ -9,10 +9,12 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
     $scope.selectedBook = bookFactory.getSelectedBook();
     pairFactory.getSubjectNames($scope.selectedBook.subjects)
       .then((albumTagArray) => {
-        // albumFactory.getAlbums($scope.removeDuplicates(albumTagArray));
-        // let uniqueTagArray = $scope.removeDuplicates(albumTagArray);
-        // console.log("", uniqueTagArray);
         albumFactory.callGetAlbum($scope.removeDuplicates(albumTagArray))
+          .then((albumArray) => {
+            console.log("", albumArray);
+            // $scope.albumArray = $scope.shuffle(albumArray);
+            // console.log("", $scope.albumArray);
+          });
       });
   };
 
@@ -22,11 +24,21 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
     });
   };
 
-  // $scope.callGetAlbum = function(uniqueTagArray) {
-  //   uniqueTagArray.forEach((value, i) => {
-  //     console.log("", value);
-  //   });
-  // };
+  $scope.shuffle = function(array) {
+    var currentIndex = array.length,
+      temporaryValue, randomIndex;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
 
 });
 
