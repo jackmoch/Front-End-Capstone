@@ -29,7 +29,6 @@ app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope
                 bookFactory.openBookPromise(validIsbnArray)
                   .then(function() {
                     $scope.booklist = bookFactory.getBookList();
-                    console.log("", $scope.booklist);
                     $scope.searchCompleted = true;
                   });
               });
@@ -40,7 +39,6 @@ app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope
   $scope.selectBook = function(selectedBook) {
     bookFactory.setSelectedBook(selectedBook);
     $rootScope.selectedBookImage = selectedBook.cover.large;
-    console.log(bookFactory.getSelectedBook());
     $location.path('/pair');
   };
 
