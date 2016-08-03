@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope, $timeout, $route) {
+app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope) {
   let originatorEv;
   $scope.searchCompleted = false;
 
