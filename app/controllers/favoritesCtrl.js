@@ -14,4 +14,14 @@ app.controller('favoritesCtrl', function(dataFactory, $scope) {
 
   $scope.populateFavorites();
 
+  $scope.removeFavorite = function(refKey) {
+    dataFactory.deleteFavorite(refKey)
+      .then(() => {
+        dataFactory.getFavorites()
+          .then((favorites) => {
+            $scope.favorites = favorites;
+          })
+      })
+  };
+
 });
