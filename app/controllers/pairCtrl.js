@@ -1,10 +1,11 @@
 'use strict';
 
-app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory, albumFactory) {
+app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory, albumFactory, authFactory, dataFactory) {
 
   $scope.album = false;
   $scope.selectedBook = null;
   $scope.currentAlbumArray = [];
+  $scope.user = false;
   let counter = 0;
 
   $scope.pair = function() {
@@ -19,11 +20,12 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
             }
             $scope.album = true;
             $scope.setCurrentAlbum(0);
+            $scope.user = authFactory.getUser();
             // $scope.currentAlbum = $scope.currentAlbumArray[0];
             // $scope.currentAlbumImage = $scope.currentAlbumArray[0].image[2][Object.keys($scope.currentAlbumArray[0].image[2])[0]];
-            console.log("", $scope.currentAlbumImage);
+            // console.log("", $scope.currentAlbumImage);
             // console.log("", albumArray);
-            console.log("first test array", $scope.currentAlbumArray);
+            // console.log("first test array", $scope.currentAlbumArray);
             // let newTestArray = $scope.currentAlbumArray.sort(function() {
             //   console.log("test counter in sort");
             //   return 0.5 - Math.random()
@@ -36,7 +38,7 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
 
   $scope.changeCurrentAlbum = function() {
     counter++
-    if (counter > $scope.currentAlbumArray.length) {
+    if (counter >= $scope.currentAlbumArray.length) {
       counter = 0
     };
     $scope.setCurrentAlbum(counter)
@@ -51,6 +53,21 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
     return albumTagArray.filter(function(elem, index, self) {
       return index == self.indexOf(elem) && elem !== undefined;
     });
+  };
+
+  $scope.buildFavoriteObject = function() {
+    let selectedBook = bookFactory.getSelectedBook();
+    let uid = authFactory.getUser();
+    let favoriteObject = {
+      bookAuthor: selectedBook.authors[0].name,
+      bookCover: selectedBook.cover.large,
+      bookTitle: selectedBook.title,
+      albumArtist: $scope.currentAlbum.artist.name,
+      albumName: $scope.currentAlbum.name,
+      albumImage: $scope.currentAlbumImage,
+      uid: uid
+    }
+    dataFactory.postData(favoriteObject);
   };
 
   // $scope.shuffle = function(a) {

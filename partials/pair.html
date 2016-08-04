@@ -2,16 +2,21 @@
   <div class="row">
     <div class="col s4">
       <img class="pairImage" ng-src="{{selectedBookImage}}">
+      <h6>{{selectedBookTitle}}</h6>
+      <h6>{{selectedBookAuthor}}</h6>
     </div>  
     <div class="col s4 push-s2">
       <img ng-if="!album" class="pairImage" src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/black-ink-grunge-stamps-textures-icons-alphanumeric/068714-black-ink-grunge-stamp-textures-icon-alphanumeric-question-mark1-ps.png">
       <img ng-if="album" class="pairImage" ng-src="{{currentAlbumImage}}">
-      <a class="waves-effect waves-light btn" ng-click="changeCurrentAlbum()">Next Album</a>
+      <h6>{{currentAlbum.artist.name}}</h6>
+      <h6>{{currentAlbum.name}}</h6>
+      <a class="waves-effect waves-light btn" ng-if='album' ng-click="changeCurrentAlbum()">Next Album</a>
+      <a class="waves-effect waves-light btn" ng-if="user" ng-click="buildFavoriteObject()">Favorite</a>
     </div>
   </div>
   <div class="row">
     <div class="col s4 push-s6">
-      <a class="waves-effect waves-light btn" ng-click="pair()">Pair</a>
+      <a class="waves-effect waves-light btn" ng-if="!album" ng-click="pair()">Pair</a>
     </div>
   </div>
 </div>

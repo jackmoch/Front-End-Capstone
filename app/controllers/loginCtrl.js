@@ -6,8 +6,10 @@ app.controller('loginCtrl', function($scope, $route, authFactory, $location) {
     console.log("Login initialized");
     authFactory.authWithProvider(authFactory.googleProvider)
       .then(function(result) {
-        var user = result.user.uid;
-        console.log("logged in user", user);
+        let user = result;
+        console.log("result", user);
+        var uid = result.user.uid;
+        console.log("logged in user", uid);
         $location.path('/search');
         $scope.$apply();
       }).catch(function(error) {
