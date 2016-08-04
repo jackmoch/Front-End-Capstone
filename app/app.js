@@ -1,7 +1,7 @@
 'use strict';
 
 const app = angular.module('pairApp', ['ngRoute', 'ngMaterial'])
-  .constant('FirebaseURL', 'https://perfect-pairs.firebaseio.com/');
+  .constant('FirebaseURL', 'https://perfect-pairs.firebaseio.com');
 
 app.run(["$location", "FBCreds", "authFactory",
 

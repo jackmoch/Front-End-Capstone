@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory, albumFactory, authFactory) {
+app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory, albumFactory, authFactory, dataFactory) {
 
   $scope.album = false;
   $scope.selectedBook = null;
@@ -57,6 +57,7 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
 
   $scope.buildFavoriteObject = function() {
     let selectedBook = bookFactory.getSelectedBook();
+    let uid = authFactory.getUser();
     console.log("", selectedBook);
     console.log("", $scope.currentAlbum);
     let favoriteObject = {
@@ -65,8 +66,11 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
       bookTitle: selectedBook.title,
       albumArtist: $scope.currentAlbum.artist.name,
       albumName: $scope.currentAlbum.name,
-      albumImage: $scope.currentAlbumImage
+      albumImage: $scope.currentAlbumImage,
+      uid: uid
     }
+    console.log("", favoriteObject);
+    dataFactory.postData(favoriteObject);
   };
 
   // $scope.shuffle = function(a) {
