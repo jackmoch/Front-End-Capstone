@@ -39,6 +39,8 @@ app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope
   $scope.selectBook = function(selectedBook) {
     bookFactory.setSelectedBook(selectedBook);
     $rootScope.selectedBookImage = selectedBook.cover.large;
+    $rootScope.selectedBookTitle = selectedBook.title;
+    $rootScope.selectedBookAuthor = selectedBook.authors[0].name;
     $location.path('/pair');
   };
 
