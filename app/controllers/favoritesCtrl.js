@@ -7,7 +7,6 @@ app.controller('favoritesCtrl', function(dataFactory, $scope) {
   $scope.populateFavorites = function() {
     dataFactory.getFavorites()
       .then((favorites) => {
-        console.log("", favorites);
         $scope.favorites = favorites;
       })
   };
@@ -22,6 +21,19 @@ app.controller('favoritesCtrl', function(dataFactory, $scope) {
             $scope.favorites = favorites;
           })
       })
+  };
+
+  $scope.rateSelectedAlbum = function(album, index) {
+    if (!album.stars[index].filled) {
+      for (let i = 0; i < index + 1; i++) {
+        album.stars[i].filled = true
+      }
+    } else {
+      for (let i = 4; i > index; --i) {
+        album.stars[i].filled = false
+      }
+    }
+    dataFactory.putDataEdits(album);
   };
 
 });
