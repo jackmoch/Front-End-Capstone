@@ -6,7 +6,6 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
   $scope.selectedBook = null;
   $scope.currentAlbumArray = [];
   $scope.user = false;
-  $scope.favorite = false;
   let counter = 0;
 
   $scope.pair = function() {
@@ -15,24 +14,19 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
       .then((albumTagArray) => {
         albumFactory.callGetAlbum($scope.removeDuplicates(albumTagArray))
           .then((albumArray) => {
+            // console.log("", albumArray);
             $scope.currentAlbumArray = [];
             for (let i = 0; i < albumArray.length; i++) {
               $scope.currentAlbumArray.push(albumArray[i]);
             }
+            // console.log("", $scope.currentAlbumArray);
+            $scope.currentAlbumArray = $scope.shuffle($scope.currentAlbumArray);
+            // console.log($scope.currentAlbumArray);
+            // albumArray = $scope.shuffle(albumArray);
+            // console.log("", albumArray);
             $scope.album = true;
             $scope.setCurrentAlbum(0);
             $scope.user = authFactory.getUser();
-            // $scope.currentAlbum = $scope.currentAlbumArray[0];
-            // $scope.currentAlbumImage = $scope.currentAlbumArray[0].image[2][Object.keys($scope.currentAlbumArray[0].image[2])[0]];
-            // console.log("", $scope.currentAlbumImage);
-            // console.log("", albumArray);
-            // console.log("first test array", $scope.currentAlbumArray);
-            // let newTestArray = $scope.currentAlbumArray.sort(function() {
-            //   console.log("test counter in sort");
-            //   return 0.5 - Math.random()
-            // });
-            // console.log("second test array", $scope.currentAlbumArray);
-            // console.log("new test array", newTestArray);
           });
       });
   };
@@ -57,7 +51,7 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
   };
 
   $scope.buildFavoriteObject = function() {
-    $scope.favorite = true;
+    $scope.currentAlbum.favorite = true;
     let selectedBook = bookFactory.getSelectedBook();
     let uid = authFactory.getUser();
     let favoriteObject = {
@@ -71,53 +65,34 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
     }
     dataFactory.postData(favoriteObject).
     then((key) => {
+      $scope.currentAlbum.refKey = key.name;
       favoriteObject.refKey = key.name;
     });
   };
 
-  // $scope.shuffle = function(a) {
-  //   var j, x, i;
-  //   for (i = a.length; i; i--) {
-  //     j = Math.floor(Math.random() * i);
-  //     console.log("j", j);
-  //     x = a[i - 1];
-  //     console.log("x", x);
-  //     a[i - 1] = a[j];
-  //     console.log("a[j]", a[j]);
-  //     a[j] = x;
-  //   }
-  // }
+  $scope.removeFavorite = function(refKey) {
+    $scope.currentAlbum.favorite = false;
+    dataFactory.deleteFavorite(refKey);
+  };
 
+  $scope.shuffle = function(array) {
+    var currentIndex = array.length,
+      temporaryValue, randomIndex;
 
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
 
-  //   $scope.shuffle = function(array) {
-  //   var currentIndex = array.length, temporaryValue, randomIndex;
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
 
-  //   // While there remain elements to shuffle...
-  //   while (0 !== currentIndex) {
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
 
-  //     // Pick a remaining element...
-  //     randomIndex = Math.floor(Math.random() * currentIndex);
-  //     currentIndex -= 1;
+    return array;
+  }
 
-  //     // And swap it with the current element.
-  //     temporaryValue = array[currentIndex];
-  //     array[currentIndex] = array[randomIndex];
-  //     array[randomIndex] = temporaryValue;
-  //   }
-
-  //   return array;
-  // }
-
-  // $scope.shuffle = function(array) {
-  //   let temp = [];
-  //   for (var i = array.length; i > 0; i--) {
-  //     var j = Math.floor(Math.random() * (i + 1));
-  //     temp[j] = array[i];
-  //     // temp.push(array[j]);
-  //   }
-  //   return temp;
-  // }
 });
-
-// array sort method

@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('dataFactory', function($q, $http, FirebaseURL) {
+app.factory('dataFactory', function($q, $http, FirebaseURL, authFactory) {
 
   const postData = function(newFavorite) {
     let data = [];
@@ -17,11 +17,16 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
     });
   };
 
+  // $http.get(`${FirebaseURL}/favorites.json?orderBy="uid"&equalTo="${AuthFactory.getUser()}"`)
+
   const getFavorites = function() {
+    let uid = authFactory.getUser();
     let data = [];
+    console.log("", uid);
     return $q((resolve, reject) => {
-      $http.get(`${FirebaseURL}/favorites.json`)
+      $http.get(`${FirebaseURL}/favorites.json?orderBy="uid"&equalTo="${uid}"`)
         .success((dataObject) => {
+          console.log("", dataObject);
           data = keyAssigner(dataObject, data); //this assigns keys locally to the objects
           //the following forEach puts locally assigned keys on firebase
           resolve(data);
@@ -49,14 +54,27 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
 
     Object.keys(dataCollection).forEach((key) => {
       dataCollection[key].refKey = key;
-      putKeyArray.push(dataCollection[key]);
+      dataArray.push(dataCollection[key]);
     });
 
     return dataArray;
   }
 
+  let deleteFavorite = function(refKey) {
+    console.log("", refKey);
+    return $q(function(resolve, reject) {
+      $http.delete(`${FirebaseURL}/favorites/${refKey}.json`)
+        .success(function(data) {
+          resolve(data);
+        })
+        .error(function(error) {
+          reject(error);
+        });
+    });
+  };
+
   return {
-    postData
+    postData, getFavorites, deleteFavorite
   }
 
 })

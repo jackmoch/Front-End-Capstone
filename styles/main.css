@@ -10,3 +10,6 @@
 .pairImage {
   height: 400px;
   width: 300px; }
+
+.pointer {
+  cursor: pointer; }

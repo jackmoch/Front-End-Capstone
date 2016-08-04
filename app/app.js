@@ -41,6 +41,10 @@ app.config(function($routeProvider) {
       templateUrl: 'partials/pair.html',
       controller: 'pairCtrl'
     })
+    .when('/favorites', {
+      templateUrl: 'partials/favorites.html',
+      controller: 'favoritesCtrl'
+    })
     .otherwise('/search');
 
 });
