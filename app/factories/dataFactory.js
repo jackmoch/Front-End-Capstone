@@ -22,11 +22,9 @@ app.factory('dataFactory', function($q, $http, FirebaseURL, authFactory) {
   const getFavorites = function() {
     let uid = authFactory.getUser();
     let data = [];
-    console.log("", uid);
     return $q((resolve, reject) => {
       $http.get(`${FirebaseURL}/favorites.json?orderBy="uid"&equalTo="${uid}"`)
         .success((dataObject) => {
-          console.log("", dataObject);
           data = keyAssigner(dataObject, data); //this assigns keys locally to the objects
           //the following forEach puts locally assigned keys on firebase
           resolve(data);
@@ -37,9 +35,9 @@ app.factory('dataFactory', function($q, $http, FirebaseURL, authFactory) {
     });
   };
 
-  const putDataEdits = function(objectToEdit) {
+  const putDataEdits = function(album) {
     return $q((resolve, reject) => {
-      $http.put(`${FirebaseURL}/favorites/${objectToEdit.refKey}.json`, objectToEdit)
+      $http.put(`${FirebaseURL}/favorites/${album.refKey}.json`, album)
         .success((data) => {
           resolve(data);
         })
@@ -61,7 +59,6 @@ app.factory('dataFactory', function($q, $http, FirebaseURL, authFactory) {
   }
 
   let deleteFavorite = function(refKey) {
-    console.log("", refKey);
     return $q(function(resolve, reject) {
       $http.delete(`${FirebaseURL}/favorites/${refKey}.json`)
         .success(function(data) {
@@ -74,7 +71,7 @@ app.factory('dataFactory', function($q, $http, FirebaseURL, authFactory) {
   };
 
   return {
-    postData, getFavorites, deleteFavorite
+    postData, getFavorites, deleteFavorite, putDataEdits
   }
 
 })

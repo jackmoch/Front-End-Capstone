@@ -37,6 +37,7 @@ app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope
   };
 
   $scope.selectBook = function(selectedBook) {
+    console.log(selectedBook);
     bookFactory.setSelectedBook(selectedBook);
     $rootScope.selectedBookImage = selectedBook.cover.large;
     $rootScope.selectedBookTitle = selectedBook.title;
