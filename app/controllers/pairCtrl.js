@@ -58,8 +58,6 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
   $scope.buildFavoriteObject = function() {
     let selectedBook = bookFactory.getSelectedBook();
     let uid = authFactory.getUser();
-    console.log("", selectedBook);
-    console.log("", $scope.currentAlbum);
     let favoriteObject = {
       bookAuthor: selectedBook.authors[0].name,
       bookCover: selectedBook.cover.large,
@@ -69,7 +67,6 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
       albumImage: $scope.currentAlbumImage,
       uid: uid
     }
-    console.log("", favoriteObject);
     dataFactory.postData(favoriteObject);
   };
 
