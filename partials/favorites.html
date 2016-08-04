@@ -11,6 +11,12 @@
         <h6>{{favorite.albumArtist}}</h6>
         <h6>{{favorite.albumName}}</h6>
         <a class="" ng-click="removeFavorite(favorite.refKey)"><i class="material-icons pointer">favorite</i></a>
+        <ul class="star-rating no-animation" ng-mouseleave="clearStars(favorite)">
+          <li ng-repeat="star in favorite.stars" class="star no-animation" ng-class="{filled: star.filled}" ng-click="rateSelectedAlbum(favorite, $index)" ng-mouseover="ratingPreviewFill(favorite, $index)">
+            <i class="material-icons no-animation" ng-show="!star.filled">star_border</i>
+            <i class="material-icons no-animation" ng-show="star.filled">star</i>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

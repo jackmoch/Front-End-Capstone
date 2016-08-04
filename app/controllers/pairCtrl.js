@@ -61,6 +61,23 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
       albumArtist: $scope.currentAlbum.artist.name,
       albumName: $scope.currentAlbum.name,
       albumImage: $scope.currentAlbumImage,
+      stars: {
+        "0": {
+          filled: false
+        },
+        "1": {
+          filled: false
+        },
+        "2": {
+          filled: false
+        },
+        "3": {
+          filled: false
+        },
+        "4": {
+          filled: false
+        }
+      },
       uid: uid
     }
     dataFactory.postData(favoriteObject).
