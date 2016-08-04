@@ -6,6 +6,7 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
   $scope.selectedBook = null;
   $scope.currentAlbumArray = [];
   $scope.user = false;
+  $scope.favorite = false;
   let counter = 0;
 
   $scope.pair = function() {
@@ -56,6 +57,7 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
   };
 
   $scope.buildFavoriteObject = function() {
+    $scope.favorite = true;
     let selectedBook = bookFactory.getSelectedBook();
     let uid = authFactory.getUser();
     let favoriteObject = {
@@ -67,7 +69,10 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
       albumImage: $scope.currentAlbumImage,
       uid: uid
     }
-    dataFactory.postData(favoriteObject);
+    dataFactory.postData(favoriteObject).
+    then((key) => {
+      favoriteObject.refKey = key.name;
+    });
   };
 
   // $scope.shuffle = function(a) {

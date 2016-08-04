@@ -11,7 +11,8 @@
       <h6>{{currentAlbum.artist.name}}</h6>
       <h6>{{currentAlbum.name}}</h6>
       <a class="waves-effect waves-light btn" ng-if='album' ng-click="changeCurrentAlbum()">Next Album</a>
-      <a class="waves-effect waves-light btn" ng-if="user" ng-click="buildFavoriteObject()">Favorite</a>
+      <a class="waves-effect waves-light btn" ng-if="user && !favorite" ng-click="buildFavoriteObject()">Favorite</a>
+      <a class="waves-effect waves-light btn" ng-if="user && favorite" ng-click="">Unfavorite</a>
     </div>
   </div>
   <div class="row">

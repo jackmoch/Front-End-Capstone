@@ -8,8 +8,8 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
     return $q((resolve, reject) => {
       $http.post(
         `${FirebaseURL}/favorites.json`, JSON.stringify(newFavorite))
-        .success((objectFromFirebase) => {
-          resolve(objectFromFirebase);
+        .success((key) => {
+          resolve(key);
         })
         .error((error) => {
           reject(error);
@@ -17,7 +17,7 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
     });
   };
 
-  const getFavorites = function(key) {
+  const getFavorites = function() {
     let data = [];
     return $q((resolve, reject) => {
       $http.get(`${FirebaseURL}/favorites.json`)
@@ -48,16 +48,9 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
     let dataCollection = object;
 
     Object.keys(dataCollection).forEach((key) => {
-      if (!dataCollection[key].refKey) {
-        dataCollection[key].refKey = key;
-        dataArray.push(dataCollection[key]);
-      }
+      dataCollection[key].refKey = key;
+      putKeyArray.push(dataCollection[key]);
     });
-
-    dataArray.forEach((value, i) => {
-      console.log("", value);
-      putDataEdits(value);
-    })
 
     return dataArray;
   }
