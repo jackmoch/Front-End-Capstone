@@ -11,6 +11,11 @@
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body ng-app='pairApp'>
+
+  <div ng-include="'partials/navbar.html'">
+    
+  </div>
+
   <div ng-view></div>
 
   <!-- LOADING SPINNER -->
@@ -80,7 +85,9 @@
   <script src="app/factories/dataFactory.js"></script>
   <!-- Controllers --> 
   <script src="app/controllers/loginCtrl.js"></script>
+  <script src="app/controllers/navbarCtrl.js"></script>
   <script src="app/controllers/searchCtrl.js"></script>
   <script src="app/controllers/pairCtrl.js"></script>
+  <script src="app/controllers/favoritesCtrl.js"></script>
 </body>
 </html>

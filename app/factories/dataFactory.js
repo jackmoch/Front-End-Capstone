@@ -49,14 +49,14 @@ app.factory('dataFactory', function($q, $http, FirebaseURL) {
 
     Object.keys(dataCollection).forEach((key) => {
       dataCollection[key].refKey = key;
-      putKeyArray.push(dataCollection[key]);
+      dataArray.push(dataCollection[key]);
     });
 
     return dataArray;
   }
 
   return {
-    postData
+    postData, getFavorites
   }
 
 })
