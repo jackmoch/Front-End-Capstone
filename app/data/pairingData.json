@@ -1,8 +1,18 @@
 {
-  "genrePairs": {
+  "subjectPairs": {
     "peyote": "psychedelic",
     "visions": "psychedelic",
     "mescaline": "psychedelic",
-    "hallucinogenicdrugs": "psychedelic"
+    "hallucinogenicdrugs": "psychedelic",
+    "horrorstories": "horror",
+    "horrortales": "horror",
+    "prisoners": "black+metal",
+    "socialisolation": "haunting",
+    "torture": "isolation",
+    "africanamericans": "soul",
+    "conductoflife": "gospel",
+    "racerelations": "civil+rights",
+    "americanauthors": "americana",
+    "americannovelists": "americana"
   }
 }
