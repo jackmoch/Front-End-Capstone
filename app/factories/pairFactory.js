@@ -25,7 +25,7 @@ app.factory('pairFactory', function($q, $http) {
     return $q((resolve, reject) => {
       $http.get(`app/data/pairingData.json`)
         .success((data) => {
-          albumTagArray.push(data.genrePairs[subject]);
+          albumTagArray.push(data.subjectPairs[subject]);
           resolve();
         });
     });
