@@ -12,18 +12,29 @@ app.controller('pairCtrl', function($scope, bookFactory, $rootScope, pairFactory
     $scope.selectedBook = bookFactory.getSelectedBook();
     pairFactory.getSubjectNames($scope.selectedBook.subjects)
       .then((albumTagArray) => {
+        if ($scope.selectedBook.subject_times) {
+          pairFactory.getTimesNames($scope.selectedBook.subject_times)
+            .then((albumTagArray) => {
+              albumFactory.callGetAlbum($scope.removeDuplicates(albumTagArray))
+                .then((albumArray) => {
+                  $scope.currentAlbumArray = [];
+                  for (let i = 0; i < albumArray.length; i++) {
+                    $scope.currentAlbumArray.push(albumArray[i]);
+                  }
+                  $scope.currentAlbumArray = $scope.shuffle($scope.currentAlbumArray);
+                  $scope.album = true;
+                  $scope.setCurrentAlbum(0);
+                  $scope.user = authFactory.getUser();
+                })
+            })
+        }
         albumFactory.callGetAlbum($scope.removeDuplicates(albumTagArray))
           .then((albumArray) => {
-            // console.log("", albumArray);
             $scope.currentAlbumArray = [];
             for (let i = 0; i < albumArray.length; i++) {
               $scope.currentAlbumArray.push(albumArray[i]);
             }
-            // console.log("", $scope.currentAlbumArray);
             $scope.currentAlbumArray = $scope.shuffle($scope.currentAlbumArray);
-            // console.log($scope.currentAlbumArray);
-            // albumArray = $scope.shuffle(albumArray);
-            // console.log("", albumArray);
             $scope.album = true;
             $scope.setCurrentAlbum(0);
             $scope.user = authFactory.getUser();

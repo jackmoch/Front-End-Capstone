@@ -14,5 +14,9 @@
     "racerelations": "civil+rights",
     "americanauthors": "americana",
     "americannovelists": "americana"
+  },
+  "placesPairs": {
+    "early20thcentury": "1930s",
+    "1920's": "1920s"
   }
 }
