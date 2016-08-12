@@ -20,8 +20,9 @@ app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope
   $scope.initiateSearch = function(searchTerms) {
     $scope.booklist = [];
     let terms = $scope.formatTerms(searchTerms);
-    bookFactory.getGoogleBooks(terms)
+    bookFactory.getGoogleBooks(terms, "0")
       .then(function(googleBooksArray) {
+        console.log("", googleBooksArray);
         bookFactory.buildIsbnArray(googleBooksArray)
           .then(function(isbnArray) {
             bookFactory.buildValidIbsnArray(isbnArray)
