@@ -1,10 +1,13 @@
 'use strict';
 
-app.controller('favoritesCtrl', function(dataFactory, $scope) {
+app.controller('favoritesCtrl', function(dataFactory, $scope, authFactory) {
 
   $scope.favorites = [];
+  $scope.user = null;
 
   $scope.populateFavorites = function() {
+    $scope.user = authFactory.getUser();
+    console.log($scope.user);
     dataFactory.getFavorites()
       .then((favorites) => {
         $scope.favorites = favorites;

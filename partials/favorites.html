@@ -1,5 +1,12 @@
 <div class="">
-  <div ng-repeat="favorite in favorites">
+  <div class="row" ng-if="!user">
+    <div class="valign-wrapper">
+      <div class="col s6 offset-s3 valign"> 
+        <h1 class="center-align">Login In To View Your Favorites!</h1>
+      </div>
+    </div>
+  </div>
+  <div ng-repeat="favorite in favorites" ng-if="user">
     <div class="row">
       <div class="col s5">
         <img class="pairImage" ng-src="{{favorite.bookCover}}">
