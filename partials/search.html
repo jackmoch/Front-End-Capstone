@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container overflowAuto">
   <div class="input-field searchDiv">
     <input id="search" type="search" required ng-model="searchTerms" placeholder="Search by Author or Title">
     <label for="search"><i class="material-icons">search</i></label>
@@ -8,7 +8,7 @@
         <md-label>Select By</md-label>
         <i class="material-icons">arrow_drop_down</i>
       </md-button>
-      <md-menu-content width="4">
+      <md-menu-content width="4" class="dropdown">
         <md-menu-item> 
           <md-button ng-click="searchBy('author')">
             Author
@@ -23,9 +23,17 @@
     </md-menu>
     <a class="waves-effect waves-light btn searchBtn" ng-click="initiateSearch(searchTerms)">Search</a>
   </div>
-  <div ng-repeat='book in booklist'>
-    <p>{{book.title}}</p>
-    <img ng-src="{{book.cover.medium}}">
-    <a class="btn-floating btn-large waves-effect waves-light red" ng-click="selectBook(book)"><i class="material-icons">add</i></a>
+  <div class="row">
+    <div ng-repeat='book in booklist' class="bookDiv col s4">
+      <div class="center-align bookWrapper">
+        <div class="imageOverflow">
+          <img ng-src="{{book.cover.medium}}">
+        </div>  
+        <div class="titleOverflow">
+          <p>{{book.title}}</p>
+        </div>
+        <a class="btn-floating btn-large waves-effect waves-light red" ng-click="selectBook(book)"><i class="material-icons">add</i></a>
+      </div> 
+    </div>
   </div>
 </div>

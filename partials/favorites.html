@@ -1,4 +1,4 @@
-<div class="container overflowAuto">
+<div class="overflowAuto">
   <div class="row" ng-if="!user">
     <div class="valign-wrapper">
       <div class="col s8 offset-s2 valign"> 
@@ -17,7 +17,8 @@
           </div>
         </div>
       </div>
-      <div class="col s3">
+      <div class="col s1"></div>
+      <div class="col s2 favoriteWrapper">
         <div class="center-align starDisplay">
           <a class="" ng-click="removeFavorite(favorite.refKey)"><i class="material-icons pointer">favorite</i></a>
           <ul class="star-rating no-animation">
@@ -28,6 +29,7 @@
           </ul>
         </div>
       </div>
+      <div class="col s1"></div>
       <div class="col s4">
         <div class="center-align">
           <div class="pairImageWrapper">
