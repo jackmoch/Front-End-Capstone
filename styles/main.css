@@ -1,36 +1,3 @@
-.largeDiv {
-  border: 1px solid black; }
-  .largeDiv .smallDiv {
-    border: 1px solid black; }
-
-.bookImage {
-  height: 400px;
-  width: 300px; }
-
-.pairImage {
-  height: 400px;
-  width: 300px; }
-
-.pointer {
-  cursor: pointer; }
-
-.star-rating {
-  margin: 20px 10%;
-  display: block; }
-  .star-rating .star {
-    list-style-type: none;
-    display: inline-block;
-    cursor: pointer; }
-
-.searchDiv {
-  margin-top: 5%; }
-
-.starDisplay {
-  margin-top: 157%; }
-
-.favoriteRow {
-  margin-top: 3%; }
-
 .no-animation {
   -o-transition-property: none !important;
   -moz-transition-property: none !important;
@@ -48,4 +15,120 @@
   -moz-animation: none !important;
   -o-animation: none !important;
   -ms-animation: none !important;
-  animation: none !important; }
+  animation: none !important;
+  margin: 20px 10%;
+  display: block; }
+  .no-animation .star {
+    list-style-type: none;
+    display: inline-block;
+    cursor: pointer; }
+
+.pointer {
+  cursor: pointer; }
+
+.overflowAuto {
+  overflow: auto;
+  height: 90vh; }
+
+body {
+  background: url(../app/img/vinyl.jpg) center center fixed;
+  width: 100%;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+.starDisplay {
+  padding-top: 25px;
+  margin-left: -100px;
+  margin-right: -100px; }
+
+.favoriteRow {
+  margin: 3%;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 30px; }
+
+.favoriteWrapper {
+  background: white;
+  margin-top: 30%;
+  border-radius: 100%;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.6); }
+
+.star {
+  margin: 0px; }
+
+.pairImage {
+  margin: 10px;
+  max-width: 90%;
+  max-height: 100%;
+  border: solid black 1px;
+  border-radius: 30px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2); }
+
+.pairImageWrapper {
+  overflow: hidden;
+  background: white;
+  padding: 15px;
+  border-radius: 30px;
+  min-height: 550px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.6); }
+
+.loginMsg {
+  background: white;
+  border-radius: 30px;
+  padding: 15px; }
+
+.bookImage {
+  height: 400px;
+  width: 300px; }
+
+.pairImage {
+  height: 400px;
+  width: 300px; }
+
+.searchDiv {
+  margin-top: 5%;
+  background: white;
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.6);
+  border: 1px grey solid; }
+
+.dropdown {
+  border-radius: 10px; }
+
+.bookDiv {
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.4);
+  margin: 30px 0 0 0;
+  padding: 20px;
+  border-radius: 30px; }
+
+.bookWrapper {
+  min-height: 400px !important;
+  background: white;
+  border-radius: 30px;
+  padding: 30px; }
+
+.titleOverflow {
+  overflow: hidden;
+  height: 40px; }
+
+.imageOverflow {
+  overflow: hidden;
+  height: 275px; }
+
+.largeDiv {
+  border: 1px solid black;
+  border-radius: 30px;
+  margin-top: 60px; }
+  .largeDiv .smallDiv {
+    border: 1px solid black; }
+
+.smallDivRow {
+  margin: 35px 0 5px 0; }
+
+.pairLogo {
+  margin-left: 10px; }
