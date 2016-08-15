@@ -26,6 +26,19 @@
 .pointer {
   cursor: pointer; }
 
+.overflowAuto {
+  overflow: auto;
+  height: 90vh; }
+
+body {
+  background: url(../app/img/vinyl.jpg) center center fixed;
+  width: 100%;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
 .starDisplay {
   margin-top: 157%; }
 
@@ -36,7 +49,18 @@
   margin: 0px; }
 
 .pairImage {
-  border-radius: 50%; }
+  margin: 10px;
+  max-width: 90%;
+  max-height: 100%; }
+
+.pairImageWrapper {
+  overflow: hidden;
+  background: white; }
+
+.loginMsg {
+  background: white;
+  border-radius: 30px;
+  padding: 15px; }
 
 .bookImage {
   height: 400px;
@@ -47,9 +71,19 @@
   width: 300px; }
 
 .searchDiv {
-  margin-top: 5%; }
+  margin-top: 5%;
+  background: white;
+  padding: 30px;
+  border-radius: 30px; }
+
+.dropdown {
+  border-radius: 10px; }
 
 .largeDiv {
-  border: 1px solid black; }
+  border: 1px solid black;
+  border-radius: 30px; }
   .largeDiv .smallDiv {
     border: 1px solid black; }
+
+.pairLogo {
+  margin-left: 10px; }

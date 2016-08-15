@@ -1,18 +1,20 @@
-<div class="container">
+<div class="container overflowAuto">
   <div class="row" ng-if="!user">
     <div class="valign-wrapper">
       <div class="col s8 offset-s2 valign"> 
-        <h1 class="center-align">Login In To View Your Favorites!</h1>
+        <h1 class="center-align loginMsg">Login In To View Your Favorites!</h1>
       </div>
     </div>
   </div>
-  <div ng-repeat="favorite in favorites" ng-if="user">
+  <div ng-repeat="favorite in favorites" ng-show="user">
     <div class="row favoriteRow">
       <div class="col s4">
         <div class="center-align">
-          <img class="pairImage" ng-src="{{favorite.bookCover}}">
-          <h6>{{favorite.bookAuthor}}</h6>
-          <h6>{{favorite.bookTitle}}</h6>
+          <div class="pairImageWrapper">
+            <img class="pairImage" ng-src="{{favorite.bookCover}}">
+            <h6>{{favorite.bookAuthor}}</h6>
+            <h6>{{favorite.bookTitle}}</h6>
+          </div>
         </div>
       </div>
       <div class="col s3">
@@ -28,9 +30,11 @@
       </div>
       <div class="col s4">
         <div class="center-align">
-          <img class="pairImage" ng-src="{{favorite.albumImage}}">
-          <h6>{{favorite.albumArtist}}</h6>
-          <h6>{{favorite.albumName}}</h6>
+          <div class="pairImageWrapper">
+            <img class="pairImage" ng-src="{{favorite.albumImage}}">
+            <h6>{{favorite.albumArtist}}</h6>
+            <h6>{{favorite.albumName}}</h6>
+          </div>
         </div>
       </div>
     </div>

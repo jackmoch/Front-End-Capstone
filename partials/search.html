@@ -1,14 +1,15 @@
 <div class="container">
   <div class="input-field searchDiv">
-    <input id="search" type="search" required ng-model="searchTerms">
+    <input id="search" type="search" required ng-model="searchTerms" placeholder="Search by Author or Title">
     <label for="search"><i class="material-icons">search</i></label>
     <i class="material-icons">close</i>
-    <md-menu>
-      <md-button aria-label="Open select by Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+    <md-menu class="dropdown" width="4">
+      <md-button aria-label="Open select by Menu" ng-click="openMenu($mdOpenMenu, $event)">
+        <md-label>Select By</md-label>
         <i class="material-icons">arrow_drop_down</i>
       </md-button>
       <md-menu-content width="4">
-        <md-menu-item>
+        <md-menu-item> 
           <md-button ng-click="searchBy('author')">
             Author
           </md-button>
