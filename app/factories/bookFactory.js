@@ -22,6 +22,7 @@ app.factory('bookFactory', function($q, $http) {
           if (index < 100) {
             console.log("test");
             getGoogleBooks(searchTerms, index)
+            reject()
           } else {
             console.log("second array", googleBookArray);
             resolve(googleBookArray);
