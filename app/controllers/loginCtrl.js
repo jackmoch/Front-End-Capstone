@@ -17,22 +17,26 @@ app.controller('loginCtrl', function($scope, $route, authFactory, $location) {
       });
   };
 
-  // $scope.newEmail = function() {
-  //   authFactory.createWithEmail($scope.email, $scope.password)
-  //     .then(function(result) {
-  //       // var user = result.uid;
-  //       console.log("logged in user", result.uid);
-  //     })
-  //     .catch(function(err) {
-  //       console.log(error);
-  //     });
-  // };
+  $scope.newEmail = function() {
+    authFactory.createWithEmail($scope.email, $scope.password)
+      .then(function(result) {
+        // var user = result.uid;
+        console.log("logged in user", result.uid);
+      })
+      .catch(function(err) {
+        console.log(error);
+      });
+  };
 
-  // $scope.existingEmail = function() {
-  //   authFactory.authWithEmail($scope.email, $scope.password)
-  //     .then(function(result) {})
-  //     .catch(function(err) {
-  //       console.log(err);
-  //     })
-  // };
+  $scope.existingEmail = function() {
+    authFactory.authWithEmail($scope.email, $scope.password)
+      .then(function(result) {
+        if (result === undefined) {
+          console.log("undefined");
+        }
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+  };
 });

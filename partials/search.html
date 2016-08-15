@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="input-field search">
+  <div class="input-field searchDiv">
     <input id="search" type="search" required ng-model="searchTerms">
     <label for="search"><i class="material-icons">search</i></label>
     <i class="material-icons">close</i>
@@ -20,7 +20,7 @@
         </md-menu-item>
       </md-menu-content>
     </md-menu>
-    <a class="waves-effect waves-light btn" ng-click="initiateSearch(searchTerms)">Search</a>
+    <a class="waves-effect waves-light btn searchBtn" ng-click="initiateSearch(searchTerms)">Search</a>
   </div>
   <div ng-repeat='book in booklist'>
     <p>{{book.title}}</p>

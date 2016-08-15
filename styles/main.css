@@ -22,8 +22,14 @@
     display: inline-block;
     cursor: pointer; }
 
-.search {
+.searchDiv {
   margin-top: 5%; }
+
+.starDisplay {
+  margin-top: 157%; }
+
+.favoriteRow {
+  margin-top: 3%; }
 
 .no-animation {
   -o-transition-property: none !important;
