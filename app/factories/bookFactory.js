@@ -14,16 +14,16 @@ app.factory('bookFactory', function($q, $http) {
       $http.get(`https://www.googleapis.com/books/v1/volumes?q=in${searchBy}:${searchTerms}&maxResults=40&orderBy=relevance&startIndex=${index}&key=AIzaSyA0F3r1-DQZP28idMye-KQkYYroQqkctl0`)
         .success((data) => {
           googleBookArray = googleBookArray.concat(data.items);
-          console.log("first array", googleBookArray);
+          // console.log("first array", googleBookArray);
           index = parseInt(index);
           index = index + 40;
           index = index.toString();
-          console.log("", index);
+          // console.log("", index);
           if (index < 100) {
-            console.log("test");
+            // console.log("test");
             getGoogleBooks(searchTerms, index)
           } else {
-            console.log("second array", googleBookArray);
+            // console.log("second array", googleBookArray);
           }
           resolve(googleBookArray);
         })

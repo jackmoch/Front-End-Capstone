@@ -51,6 +51,7 @@ app.factory('pairFactory', function($q, $http) {
     return $q((resolve, reject) => {
       $http.get(`app/data/pairingData.json`)
         .success((data) => {
+          console.log(data);
           albumTagArray.push(data.placesPairs[time]);
           resolve();
           placesCounter++
