@@ -13,7 +13,11 @@
     "conductoflife": "gospel",
     "racerelations": "civil+rights",
     "americanauthors": "americana",
-    "americannovelists": "americana"
+    "americannovelists": "americana",
+    "americansciencefiction": "science+fiction",
+    "sciencefiction": "science+fiction",
+    "technologyandcivilization": "futuristic",
+    "politicsandgovernment": "political"
   },
   "placesPairs": {
     "early20thcentury": "1930s",
