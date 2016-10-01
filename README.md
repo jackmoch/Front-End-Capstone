@@ -1,5 +1,6 @@
 # Perfect Pair - Front-End Capstone Project
-## ![AngularJS](app/img/AngularJSLogo50px.png "AngularJS")  &  ![Firebase ](app/img/FirebaseLogo50px.png "Firebase ")
+## ![AngularJS](app/img/AngularJSLogo50px.png "AngularJS")
+## ![Firebase ](app/img/FirebaseLogo50px.png "Firebase ")
 ### [NSS](http://nashvillesoftwareschool.com/) Cohort D14
 ### Instructor - [Joe Shephard](https://github.com/JoeShep) 
 ### Advisors - [Christina Young](https://github.com/ChristinaJYoung) & [Callan Morrison](https://github.com/morecallan)
