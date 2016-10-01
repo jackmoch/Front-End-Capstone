@@ -16,3 +16,25 @@ based on a book I was reading really excited me so I ran with it!
 - The current pairing methodology requires me to build my own data table as a .json file which is a somewhat tedious process, so
 some searches may not return results simply because I haven't yet paired their keywords. 
 - A constant work in progress!!!
+
+### Requirements
+Create a functional, rich browser app that uses:
+  - Angular JS
+  - Firebase Google Authorization
+  - Write / Edit / Delete with Firebase
+
+### Technologies Used
+---
+
+  - HTML5
+  - CSS3
+  - JavaScript
+  - Gulp v3.9.1
+  - JSHint v2.9.2
+  - Angular v1.5.8
+  - Angular-Route v1.5.8
+  - Firebase v3.2.0
+  - jQuery v2.2.4
+  - Materialize v0.97.7
+  - SASS v2.3.2
+  - Angular Material v1.1.0
