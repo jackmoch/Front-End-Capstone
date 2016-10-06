@@ -8,7 +8,7 @@
 ## PROPOSAL
 ### The Ones and Twos
 A good book deserves a fitting soundtrack. Perfect Pairs is designed to suggest a variety of records to compliment what you
-are currently reading. Break out your bindings, curl up in your most comfortable chair and settle in with you Perfect Pair.
+are currently reading. Break out your bindings, curl up in your most comfortable chair and settle in with your Perfect Pair.
 
 ### Notes
 - I designed this application as a reader and music junkie. I love finding new music and the idea of discovering a record
