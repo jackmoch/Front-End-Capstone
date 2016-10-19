@@ -87,7 +87,7 @@ app.factory('bookFactory', function($q, $http) {
     return $q((resolve, reject) => {
       $http({
         method: "GET",
-        url: `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&&jscmd=data&format=json`
+        url: `https://perfect-pair-proxy.herokuapp.com/api/books?bibkeys=ISBN:${isbn}&&jscmd=data&format=json`
       })
         .success((data) => {
           if (data['ISBN:' + isbn] && data['ISBN:' + isbn].authors && data['ISBN:' + isbn].cover) {
