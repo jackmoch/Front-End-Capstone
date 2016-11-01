@@ -22,7 +22,6 @@ app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope
     let terms = $scope.formatTerms(searchTerms);
     bookFactory.getGoogleBooks(terms, "0")
       .then(function(googleBooksArray) {
-        console.log("", googleBooksArray);
         bookFactory.buildIsbnArray(googleBooksArray)
           .then(function(isbnArray) {
             bookFactory.buildValidIbsnArray(isbnArray)
@@ -38,7 +37,6 @@ app.controller('searchCtrl', function($scope, bookFactory, $location, $rootScope
   };
 
   $scope.selectBook = function(selectedBook) {
-    console.log(selectedBook);
     bookFactory.setSelectedBook(selectedBook);
     $rootScope.selectedBookImage = selectedBook.cover.large;
     $rootScope.selectedBookTitle = selectedBook.title;

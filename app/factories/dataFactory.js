@@ -18,7 +18,6 @@ app.factory('dataFactory', function($q, $http, FirebaseURL, authFactory) {
     });
   };
 
-  // $http.get(`${FirebaseURL}/favorites.json?orderBy="uid"&equalTo="${AuthFactory.getUser()}"`)
 
   const getFavorites = function() {
     let uid = authFactory.getUser();

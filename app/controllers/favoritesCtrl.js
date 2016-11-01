@@ -7,7 +7,6 @@ app.controller('favoritesCtrl', function(dataFactory, $scope, authFactory) {
 
   $scope.populateFavorites = function() {
     $scope.user = authFactory.getUser();
-    console.log($scope.user);
     dataFactory.getFavorites()
       .then((favorites) => {
         $scope.favorites = favorites;
